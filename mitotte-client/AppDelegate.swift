@@ -20,8 +20,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let SCREENSHOT_UPLOAD_URL = "http://localhost/api/v1/screenshots"
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Get uuid from user defaults or create.
+        let userDefaults = UserDefaults.standard
+        var uuid = ""
+        if let saved_uuid = userDefaults.string(forKey: "uuid") {
+            uuid = saved_uuid
+        } else {
+            uuid = NSUUID().uuidString
+            userDefaults.set(uuid, forKey: "uuid")
+        }
+        let parameters = ["uuid": uuid]
+
         let activity = NSBackgroundActivityScheduler(identifier: Bundle.main.bundleIdentifier!)
-        let parameters = ["uuid": NSUUID().uuidString]
         activity.repeats = true
         activity.tolerance = TimeInterval(ACTIVITY_TOLERANCE)
         activity.interval = TimeInterval(ACTIVITY_WAITTIME)
