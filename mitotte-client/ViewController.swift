@@ -7,13 +7,17 @@
 //
 
 import Cocoa
+import WebKit
 
 class ViewController: NSViewController {
+
+    @IBOutlet weak var WebView: WebView!
+    var targetURL = "http://localhost"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        WebView.mainFrame.load(URLRequest(url: URL(string: targetURL)!))
     }
 
     override var representedObject: Any? {
