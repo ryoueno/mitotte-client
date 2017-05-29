@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let ACTIVITY_WAITTIME = 5
 
     let SCREENSHOT_FILENAME = "screenshot.png"
-    let SCREENSHOT_UPLOAD_URL = ProcessInfo.processInfo.environment["POST_SCREENSHOT_URL"]!
+    let SCREENSHOT_UPLOAD_URL = "http://localhost/api/v1/screenshots"
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let activity = NSBackgroundActivityScheduler(identifier: Bundle.main.bundleIdentifier!)
